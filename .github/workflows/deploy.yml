@@ -16,14 +16,14 @@ jobs:
     name: Check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
       - name: Validate HTML
         run: npx --yes html-validate@9 "public/**/*.html"
       - name: Dry-run deploy
-        run: npx --yes wrangler@4 deploy --dry-run
+        run: npx --yes wrangler@4.147.0 deploy --dry-run
 
   preview:
     name: Preview (PR)
@@ -31,13 +31,14 @@ jobs:
     needs: check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Upload preview version
         id: upload
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4.147.0"
           command: versions upload --message "PR #${{ github.event.pull_request.number }}"
       - name: Show preview URL
         run: echo "${{ steps.upload.outputs.deployment-url }}" >> "$GITHUB_STEP_SUMMARY"
@@ -51,10 +52,11 @@ jobs:
       name: production
       url: https://www.sorawich.in.th
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4.147.0"
           command: deploy --message "${{ github.sha }}"
