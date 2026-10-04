@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Your Name — Personal Website</title>
-  <meta name="description" content="Personal website of Your Name">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23111'/><text x='50' y='66' font-size='52' text-anchor='middle' fill='%23f5c451' font-family='sans-serif' font-weight='700'>Y</text></svg>">
+  <title>Sorawich — Web Developer</title>
+  <meta name="description" content="Sorawich — web developer building monitoring tools, web apps and WordPress themes.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23111'/><text x='50' y='66' font-size='52' text-anchor='middle' fill='%23f5c451' font-family='sans-serif' font-weight='700'>S</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,11 +13,10 @@
 </head>
 <body>
   <header class="nav">
-    <a class="brand" href="#top">YN<span>.</span></a>
+    <a class="brand" href="#top">sorawich<span>.</span></a>
     <nav>
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
     </nav>
     <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle theme">◐</button>
@@ -26,15 +25,15 @@
   <main id="top">
     <section class="hero">
       <p class="eyebrow">สวัสดีครับ 👋 Hello, I'm</p>
-      <h1>Your Name</h1>
-      <h2>Software Developer · Bangkok, Thailand</h2>
+      <h1>Sorawich</h1>
+      <h2>Web Developer · Thailand</h2>
       <p class="lead">
-        I build clean, fast, and useful things for the web. Currently focused on
-        modern frontend, cloud, and developer tooling.
+        I build web apps and the tools that keep websites healthy — from
+        domain &amp; SSL monitoring dashboards to React front-ends and WordPress themes.
       </p>
       <div class="cta">
         <a class="btn primary" href="#projects">View my work</a>
-        <a class="btn" href="#contact">Get in touch</a>
+        <a class="btn" href="https://github.com/bankkk1996" target="_blank" rel="noopener">GitHub</a>
       </div>
     </section>
 
@@ -42,19 +41,23 @@
       <h3 class="section-title">About</h3>
       <div class="about-grid">
         <p>
-          Hi! I'm a developer who enjoys turning ideas into real products. I care about
-          good design, readable code, and shipping things people actually use.
-          Outside of work I like learning new tech, reading, and exploring cafés.
+          I've been writing code on GitHub since 2016 — starting with university
+          projects in Java, Python and deep learning, and moving on to full-stack
+          JavaScript. Today I mostly work with React, Next.js and Node.js, and I
+          enjoy building practical tools that solve real day-to-day problems.
         </p>
         <ul class="skills">
-          <li>JavaScript / TypeScript</li>
-          <li>React / Next.js</li>
-          <li>Node.js</li>
+          <li>JavaScript</li>
+          <li>TypeScript</li>
+          <li>React</li>
+          <li>Next.js</li>
+          <li>Node.js / Express</li>
+          <li>Tailwind CSS</li>
+          <li>SQLite</li>
+          <li>Docker</li>
+          <li>WordPress</li>
           <li>Python</li>
           <li>Cloudflare</li>
-          <li>SQL</li>
-          <li>Git</li>
-          <li>UI / UX</li>
         </ul>
       </div>
     </section>
@@ -63,65 +66,54 @@
       <h3 class="section-title">Projects</h3>
       <div class="cards">
         <article class="card">
-          <h4>Project One</h4>
-          <p>Short description of what this project does and the problem it solves.</p>
-          <div class="tags"><span>React</span><span>Workers</span></div>
-          <a href="#" class="link">View →</a>
+          <h4>Monitor Web</h4>
+          <p>Full-stack app that tracks domain and SSL certificate expirations, with cron checks, per-user alert rules, LINE &amp; email notifications and a dashboard with charts.</p>
+          <div class="tags"><span>Node.js</span><span>Express</span><span>React</span><span>SQLite</span><span>Docker</span></div>
+          <a href="https://github.com/bankkk1996/monitoring" class="link" target="_blank" rel="noopener">GitHub →</a>
         </article>
         <article class="card">
-          <h4>Project Two</h4>
-          <p>A tool or app you're proud of. Mention the impact or interesting challenge.</p>
-          <div class="tags"><span>Node.js</span><span>SQL</span></div>
-          <a href="#" class="link">View →</a>
+          <h4>SSL Monitor</h4>
+          <p>Lightweight web tool for checking the SSL status of websites at a glance.</p>
+          <div class="tags"><span>JavaScript</span><span>HTML</span></div>
+          <a href="https://ssl-monitor-jet.vercel.app" class="link" target="_blank" rel="noopener">Live demo →</a>
         </article>
         <article class="card">
-          <h4>Project Three</h4>
-          <p>Side project, open-source contribution, or experiment worth sharing.</p>
-          <div class="tags"><span>Python</span><span>AI</span></div>
-          <a href="#" class="link">View →</a>
+          <h4>Site Status Observer</h4>
+          <p>Backend service for observing whether websites are up and reporting their status.</p>
+          <div class="tags"><span>Node.js</span><span>JavaScript</span></div>
+          <a href="https://github.com/bankkk1996/backend-site-status-observer" class="link" target="_blank" rel="noopener">GitHub →</a>
+        </article>
+        <article class="card">
+          <h4>Coach App</h4>
+          <p>Web application written in TypeScript for coaches and their trainees.</p>
+          <div class="tags"><span>TypeScript</span></div>
+          <a href="https://github.com/bankkk1996/Coach-app" class="link" target="_blank" rel="noopener">GitHub →</a>
+        </article>
+        <article class="card">
+          <h4>QR Code Check-In</h4>
+          <p>Simple web page for checking people in by scanning QR codes.</p>
+          <div class="tags"><span>HTML</span><span>JavaScript</span></div>
+          <a href="https://github.com/bankkk1996/QRCode-CheckIn" class="link" target="_blank" rel="noopener">GitHub →</a>
+        </article>
+        <article class="card">
+          <h4>WordPress Themes</h4>
+          <p>Custom WordPress themes, including a theme tailored for Thai-language sites.</p>
+          <div class="tags"><span>WordPress</span><span>CSS</span></div>
+          <a href="https://github.com/bankkk1996/Theme-Wordpress-TH" class="link" target="_blank" rel="noopener">GitHub →</a>
         </article>
       </div>
-    </section>
-
-    <section id="experience" class="section">
-      <h3 class="section-title">Experience</h3>
-      <ol class="timeline">
-        <li>
-          <span class="when">2024 — Present</span>
-          <div>
-            <h4>Software Developer · Company Name</h4>
-            <p>What you work on and key achievements.</p>
-          </div>
-        </li>
-        <li>
-          <span class="when">2022 — 2024</span>
-          <div>
-            <h4>Junior Developer · Previous Company</h4>
-            <p>Responsibilities and things you learned.</p>
-          </div>
-        </li>
-        <li>
-          <span class="when">2018 — 2022</span>
-          <div>
-            <h4>B.Eng. Computer Engineering · University</h4>
-            <p>Education, activities, or awards.</p>
-          </div>
-        </li>
-      </ol>
     </section>
 
     <section id="contact" class="section contact">
       <h3 class="section-title">Contact</h3>
       <p class="lead">Open to collaborations and new opportunities — feel free to reach out.</p>
       <div class="cta">
-        <a class="btn primary" href="mailto:you@example.com">Email me</a>
-        <a class="btn" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn" href="https://linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn primary" href="https://github.com/bankkk1996" target="_blank" rel="noopener">GitHub</a>
       </div>
     </section>
   </main>
 
-  <footer>© <span id="year"></span> Your Name · Hosted on Cloudflare</footer>
+  <footer>© <span id="year"></span> Sorawich · Hosted on Cloudflare</footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
