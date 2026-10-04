@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "personal-website",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "routes": [
+    // { "pattern": "sorawich.in.th", "custom_domain": true }, // enable after removing the existing A record in DNS
+    { "pattern": "www.sorawich.in.th", "custom_domain": true }
+  ],
+  "assets": {
+    "directory": "./public"
+  }
+}

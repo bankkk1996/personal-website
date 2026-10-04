@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Name — Personal Website</title>
+  <meta name="description" content="Personal website of Your Name">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23111'/><text x='50' y='66' font-size='52' text-anchor='middle' fill='%23f5c451' font-family='sans-serif' font-weight='700'>Y</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="#top">YN<span>.</span></a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">◐</button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <p class="eyebrow">สวัสดีครับ 👋 Hello, I'm</p>
+      <h1>Your Name</h1>
+      <h2>Software Developer · Bangkok, Thailand</h2>
+      <p class="lead">
+        I build clean, fast, and useful things for the web. Currently focused on
+        modern frontend, cloud, and developer tooling.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">View my work</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h3 class="section-title">About</h3>
+      <div class="about-grid">
+        <p>
+          Hi! I'm a developer who enjoys turning ideas into real products. I care about
+          good design, readable code, and shipping things people actually use.
+          Outside of work I like learning new tech, reading, and exploring cafés.
+        </p>
+        <ul class="skills">
+          <li>JavaScript / TypeScript</li>
+          <li>React / Next.js</li>
+          <li>Node.js</li>
+          <li>Python</li>
+          <li>Cloudflare</li>
+          <li>SQL</li>
+          <li>Git</li>
+          <li>UI / UX</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <h3 class="section-title">Projects</h3>
+      <div class="cards">
+        <article class="card">
+          <h4>Project One</h4>
+          <p>Short description of what this project does and the problem it solves.</p>
+          <div class="tags"><span>React</span><span>Workers</span></div>
+          <a href="#" class="link">View →</a>
+        </article>
+        <article class="card">
+          <h4>Project Two</h4>
+          <p>A tool or app you're proud of. Mention the impact or interesting challenge.</p>
+          <div class="tags"><span>Node.js</span><span>SQL</span></div>
+          <a href="#" class="link">View →</a>
+        </article>
+        <article class="card">
+          <h4>Project Three</h4>
+          <p>Side project, open-source contribution, or experiment worth sharing.</p>
+          <div class="tags"><span>Python</span><span>AI</span></div>
+          <a href="#" class="link">View →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <h3 class="section-title">Experience</h3>
+      <ol class="timeline">
+        <li>
+          <span class="when">2024 — Present</span>
+          <div>
+            <h4>Software Developer · Company Name</h4>
+            <p>What you work on and key achievements.</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">2022 — 2024</span>
+          <div>
+            <h4>Junior Developer · Previous Company</h4>
+            <p>Responsibilities and things you learned.</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">2018 — 2022</span>
+          <div>
+            <h4>B.Eng. Computer Engineering · University</h4>
+            <p>Education, activities, or awards.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="contact" class="section contact">
+      <h3 class="section-title">Contact</h3>
+      <p class="lead">Open to collaborations and new opportunities — feel free to reach out.</p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:you@example.com">Email me</a>
+        <a class="btn" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Your Name · Hosted on Cloudflare</footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const root = document.documentElement;
+    try { const t = localStorage.getItem('theme'); if (t) root.dataset.theme = t; } catch (e) {}
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const dark = root.dataset.theme
+        ? root.dataset.theme === 'dark'
+        : matchMedia('(prefers-color-scheme: dark)').matches;
+      root.dataset.theme = dark ? 'light' : 'dark';
+      try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
+    });
+    const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), { threshold: .1 });
+    document.querySelectorAll('.section').forEach(s => io.observe(s));
+  </script>
+</body>
+</html>
