@@ -17,6 +17,8 @@ env:
 jobs:
   check:
     runs-on: ubuntu-latest
+    env:
+      HAS_LINE: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN != '' && secrets.LINE_USER_ID != '' }}
     steps:
       - name: Look up expiry date (THNIC WHOIS)
         id: whois
@@ -62,7 +64,26 @@ jobs:
             gh issue comment "$ISSUE" --body "$MSG"
           else
             echo "Issue #$ISSUE already open; next email on one of: $NOTIFY_DAYS days left"
+            exit 0
           fi
+          echo "notify=true" >> "$GITHUB_OUTPUT"
+        id: issue
+
+      - name: Send LINE message
+        # sent on reminder days, and on every manual run (to test the LINE setup)
+        if: env.HAS_LINE == 'true' && (steps.issue.outputs.notify == 'true' || github.event_name == 'workflow_dispatch')
+        env:
+          LINE_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+          LINE_TO: ${{ secrets.LINE_USER_ID }}
+          EXPIRES: ${{ steps.whois.outputs.expires }}
+          DAYS: ${{ steps.whois.outputs.days }}
+        run: |
+          TEXT="⚠️ โดเมน $DOMAIN จะหมดอายุวันที่ $EXPIRES (เหลือ $DAYS วัน)
+          ต่ออายุที่ THNIC หรือตัวแทนจดโดเมนที่ซื้อมา
+          ${{ github.server_url }}/${{ github.repository }}/issues"
+          jq -n --arg to "$LINE_TO" --arg text "$TEXT" '{to: $to, messages: [{type: "text", text: $text}]}' \
+            | curl -sS --fail-with-body -X POST https://api.line.me/v2/bot/message/push \
+                -H "Authorization: Bearer $LINE_TOKEN" -H "Content-Type: application/json" -d @-
 
       - name: Keep this scheduled workflow enabled
         env:
