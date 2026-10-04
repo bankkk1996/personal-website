@@ -56,7 +56,9 @@ jobs:
           fi
           MSG="โดเมน **$DOMAIN** จะหมดอายุวันที่ **$EXPIRES** (เหลือ **$DAYS วัน**)
 
-          ต่ออายุที่ที่ซื้อโดเมนมา (THNIC หรือตัวแทนจดโดเมน) — Cloudflare ต่อ .in.th ไม่ได้
+          👉 **ต่ออายุที่นี่:** https://thdomain.thnic.co.th/
+          เข้าสู่ระบบ → โดเมนของคุณ → $DOMAIN → ต่ออายุโดเมน → ชำระเงิน
+          (ถ้าซื้อผ่านตัวแทนจดโดเมน ให้ต่อที่ตัวแทนนั้นแทน — Cloudflare ต่อ .in.th ไม่ได้)
           ต่อแล้ว issue นี้จะปิดเองอัตโนมัติภายใน 1 วัน"
           if [ -z "$ISSUE" ]; then
             gh issue create --title "$TITLE" --body "$MSG" --assignee "${{ github.repository_owner }}"
@@ -79,8 +81,8 @@ jobs:
           DAYS: ${{ steps.whois.outputs.days }}
         run: |
           TEXT="⚠️ โดเมน $DOMAIN จะหมดอายุวันที่ $EXPIRES (เหลือ $DAYS วัน)
-          ต่ออายุที่ THNIC หรือตัวแทนจดโดเมนที่ซื้อมา
-          ${{ github.server_url }}/${{ github.repository }}/issues"
+          👉 ต่ออายุที่นี่: https://thdomain.thnic.co.th/
+          เข้าสู่ระบบ → โดเมนของคุณ → $DOMAIN → ต่ออายุโดเมน"
           jq -n --arg to "$LINE_TO" --arg text "$TEXT" '{to: $to, messages: [{type: "text", text: $text}]}' \
             | curl -sS --fail-with-body -X POST https://api.line.me/v2/bot/message/push \
                 -H "Authorization: Bearer $LINE_TOKEN" -H "Content-Type: application/json" -d @-
