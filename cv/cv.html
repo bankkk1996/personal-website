@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!--
+  Source of /uploads/cv.pdf. Edit this file, then regenerate the PDF (A4) with:
+    "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --headless=new --no-pdf-header-footer ^
+      --print-to-pdf="public\uploads\cv.pdf" "file:///.../personal-website/cv/cv.html"
+  Bracketed grey text marks information still to be filled in.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sorawich — CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 16mm 16mm 14mm; }
+  :root { --text: #18181b; --muted: #71717a; --line: #e4e4e7; --brand: #b5790f; --chip: #f4f4f5; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Inter, system-ui, sans-serif; color: var(--text); font-size: 9.6pt; line-height: 1.45; }
+  a { color: inherit; text-decoration: none; }
+  .todo { color: #a1a1aa; font-style: italic; }
+
+  header { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding-bottom: 10px; border-bottom: 2px solid var(--text); }
+  h1 { font-size: 24pt; line-height: 1.05; letter-spacing: -0.02em; }
+  .role { font-size: 11.5pt; color: var(--muted); margin-top: 3px; }
+  .contact { text-align: right; font-size: 8.8pt; line-height: 1.6; color: var(--muted); }
+  .contact b { color: var(--text); font-weight: 500; }
+
+  section { margin-top: 14px; }
+  h2 { font-size: 8.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brand); margin-bottom: 6px; padding-bottom: 3px; border-bottom: 1px solid var(--line); }
+  p.summary { font-size: 10pt; }
+
+  .skills { display: grid; grid-template-columns: 34mm 1fr; row-gap: 3px; }
+  .skills dt { font-weight: 600; }
+  .skills dd { color: #3f3f46; }
+
+  .item { break-inside: avoid; margin-bottom: 8px; }
+  .item-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+  .item-head h3 { font-size: 10.2pt; font-weight: 600; }
+  .item-head h3 span { font-weight: 400; color: var(--muted); }
+  .when { font-size: 8.8pt; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .stack { font-size: 8.4pt; color: var(--muted); margin-top: 1px; }
+  ul { margin: 3px 0 0 14px; }
+  li { margin-top: 1.5px; }
+  li::marker { color: var(--brand); }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
+</style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Sorawich <span class="todo">[Surname]</span></h1>
+      <div class="role">Web Developer</div>
+    </div>
+    <div class="contact">
+      <div><b>sorawich.in.th</b></div>
+      <div><b>github.com/bankkk1996</b></div>
+      <div class="todo">[email]</div>
+      <div class="todo">[phone]</div>
+      <div class="todo">[linkedin.com/in/…]</div>
+      <div>Thailand <span class="todo">[city]</span></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Summary</h2>
+    <p class="summary">
+      Web developer who builds web apps and the tools that keep websites healthy — from domain &amp; SSL monitoring
+      to React front-ends and WordPress themes. Writing code since 2016, from university projects in Java, Python and
+      deep learning to full-stack JavaScript; today mostly React, Next.js and Node.js, shipped on Cloudflare's edge with
+      automated CI/CD.
+    </p>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <dl class="skills">
+      <dt>Languages</dt><dd>JavaScript, TypeScript, Python, Java, PHP, SQL</dd>
+      <dt>Front-end</dt><dd>React, Next.js, Vite, Tailwind CSS, shadcn/ui</dd>
+      <dt>Back-end &amp; data</dt><dd>Node.js, Express, SQLite / Cloudflare D1, REST APIs</dd>
+      <dt>Cloud &amp; DevOps</dt><dd>Cloudflare Workers &amp; Zero Trust, GitHub Actions (CI/CD), Docker, Vercel</dd>
+      <dt>Mobile</dt><dd>React Native (Expo), Android (Java), Firebase</dd>
+      <dt>CMS</dt><dd>WordPress (custom themes), Git-based CMS</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>Experience</h2>
+    <div class="item">
+      <div class="item-head"><h3 class="todo">[Role] <span>· [Company]</span></h3><span class="when todo">[Start] – Present</span></div>
+      <ul class="todo"><li>[What you built or improved — ideally with a number, e.g. “cut report time by 30%”]</li><li>[Another achievement]</li></ul>
+    </div>
+    <div class="item">
+      <div class="item-head"><h3 class="todo">[Previous role] <span>· [Company]</span></h3><span class="when todo">[Start] – [End]</span></div>
+      <ul class="todo"><li>[Achievement]</li></ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Selected projects</h2>
+
+    <div class="item">
+      <div class="item-head"><h3>SSL &amp; Website Monitor <span>· github.com/bankkk1996/ssl-monitor</span></h3><span class="when">2026</span></div>
+      <div class="stack">Cloudflare Workers · D1 (SQLite) · GitHub Actions · React · shadcn/ui · Cloudflare Access · LINE Messaging API</div>
+      <ul>
+        <li>Monitors TLS certificates, uptime and domain-registration expiry; owner-only dashboard behind Cloudflare Access with JWT verification.</li>
+        <li>Certificate checks run on GitHub Actions (real TLS handshake) and report to the Worker; expiry lookups via RDAP with WHOIS fallback.</li>
+        <li>Alerts on state changes only (down/up, certificate errors, expiry thresholds), merged into one LINE message per run; designed to stay within free-tier limits.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-head"><h3>Personal website &amp; CMS <span>· sorawich.in.th</span></h3><span class="when">2026</span></div>
+      <div class="stack">React · Vite · Tailwind CSS · shadcn/ui · Sveltia CMS · Cloudflare Workers · GitHub Actions</div>
+      <ul>
+        <li>Prerendered React site with a Git-based CMS for editing content; every push is type-checked, built and deployed by CI/CD.</li>
+        <li>Scheduled domain-expiry checks with reminders via GitHub issues, email and LINE.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-head"><h3>Finance tracker <span>· private</span></h3><span class="when">2026</span></div>
+      <div class="stack">Cloudflare Workers · D1 · React · shadcn/ui · Cloudflare Zero Trust</div>
+      <ul><li>Personal income &amp; expense app with monthly summaries, spending by category and category management; API secured with Access JWT verification.</li></ul>
+    </div>
+
+    <div class="item">
+      <div class="item-head"><h3>Website Monitoring (self-hosted) <span>· github.com/bankkk1996/monitoring</span></h3><span class="when">2026</span></div>
+      <div class="stack">Node.js · Express · React · SQLite · Docker</div>
+      <ul><li>Full-stack domain &amp; SSL expiry monitor with cron checks, per-user alert rules, LINE and email notifications, and a dashboard with charts.</li></ul>
+    </div>
+
+    <div class="two">
+      <div class="item">
+        <div class="item-head"><h3>Coach App</h3><span class="when">2025</span></div>
+        <div class="stack">React Native · Expo Router · NativeWind · TypeScript</div>
+        <ul><li>Mobile app for coaches.</li></ul>
+      </div>
+      <div class="item">
+        <div class="item-head"><h3>WordPress Theme</h3><span class="when">2025</span></div>
+        <div class="stack">WordPress · PHP · CSS</div>
+        <ul><li>Complete custom theme: front page, archive, page and 404 templates.</li></ul>
+      </div>
+      <div class="item">
+        <div class="item-head"><h3>QR Code Check-In</h3><span class="when">2025</span></div>
+        <div class="stack">JavaScript · GitHub Pages</div>
+        <ul><li>Browser-based QR check-in with an admin search page.</li></ul>
+      </div>
+      <div class="item">
+        <div class="item-head"><h3>TrashToGo · Airfighters</h3><span class="when">2020–2021</span></div>
+        <div class="stack">Android (Java) · Firebase · Google Maps</div>
+        <ul><li>Waste-sorting app with recycling-factory map and web admin; a tilt-controlled 2D shooter game.</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="two">
+    <section>
+      <h2>Education</h2>
+      <div class="item">
+        <div class="item-head"><h3 class="todo">[Degree, Major]</h3><span class="when todo">[Year]</span></div>
+        <div class="todo">[University]</div>
+      </div>
+    </section>
+    <section>
+      <h2>Languages</h2>
+      <div>Thai — native</div>
+      <div>English — <span class="todo">[level]</span></div>
+    </section>
+  </div>
+</body>
+</html>
