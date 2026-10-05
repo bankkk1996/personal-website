@@ -56,7 +56,7 @@ collections:
               - { name: tagline, label: Tagline, widget: string }
               - { name: intro, label: Intro, widget: text }
               - { name: github, label: GitHub URL, widget: string }
-              - { name: photo, label: "Profile photo (square works best)", widget: image, required: false }
+              - { name: photo, label: "Profile photo (square works best; replace the placeholder)", widget: image, required: false }
           - name: about
             label: About
             widget: object
@@ -101,8 +101,11 @@ collections:
             widget: object
             fields:
               - { name: text, label: Text, widget: text }
+              - { name: email, label: "Email (shown as a mailto button; empty = hidden)", widget: string, required: false }
+              - { name: linkedin, label: "LinkedIn URL (https://www.linkedin.com/in/…; empty = hidden)", widget: string, required: false }
+              - { name: cv, label: "CV (PDF) — shown as Download CV in the hero and here; empty = hidden", widget: file, required: false }
               - name: links
-                label: Buttons
+                label: Other buttons
                 widget: list
                 summary: "{{fields.label}}"
                 fields:

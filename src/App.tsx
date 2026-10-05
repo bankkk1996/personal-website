@@ -1,6 +1,6 @@
-import { ArrowRight, ArrowUpRight, Lock } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, FileText, Lock, Mail } from 'lucide-react';
+import { LinkedinIcon } from '@/components/linkedin-icon';
 import { GithubIcon } from '@/components/github-icon';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -20,7 +20,7 @@ interface SiteContent {
   about: { text: string; skills: string[] };
   experience?: Job[];
   projects: Project[];
-  contact: { text: string; links: Link[] };
+  contact: { text: string; email?: string; linkedin?: string; cv?: string; links: Link[] };
 }
 
 const isExternal = (url: string) => /^https?:\/\//.test(url);
@@ -92,13 +92,15 @@ export default function App() {
           <div className="mt-8 flex flex-wrap gap-3">
             <Button size="lg" asChild><a href="#projects">View my work <ArrowRight /></a></Button>
             <Button size="lg" variant="outline" asChild><a href={hero.github} target="_blank" rel="noopener"><GithubIcon /> GitHub</a></Button>
+            {contact.cv && (
+              <Button size="lg" variant="outline" asChild><a href={contact.cv} target="_blank" rel="noopener"><FileText /> Download CV</a></Button>
+            )}
           </div>
           </div>
           {hero.photo && (
-            <Avatar className="size-32 shrink-0 ring-4 ring-brand/30 ring-offset-4 ring-offset-background sm:size-44 md:size-56">
-              <AvatarImage src={hero.photo} alt={hero.name} className="object-cover" />
-              <AvatarFallback className="text-4xl font-semibold">{hero.name.slice(0, 1)}</AvatarFallback>
-            </Avatar>
+            // A plain <img> (not Radix Avatar, which only renders after hydration) so the photo is in the prerendered HTML.
+            <img src={hero.photo} alt={hero.name} width={224} height={224} fetchPriority="high"
+              className="size-32 shrink-0 rounded-full bg-muted object-cover ring-4 ring-brand/30 ring-offset-4 ring-offset-background sm:size-44 md:size-56" />
           )}
         </section>
 
@@ -161,8 +163,19 @@ export default function App() {
             </div>
           )}
           <div className="mt-6 flex flex-wrap gap-3">
+            {contact.email && (
+              <Button size="lg" asChild><a href={`mailto:${contact.email}`}><Mail /> {contact.email}</a></Button>
+            )}
+            {contact.linkedin && (
+              <Button size="lg" variant={contact.email ? 'outline' : 'default'} asChild>
+                <a href={contact.linkedin} target="_blank" rel="noopener"><LinkedinIcon /> LinkedIn</a>
+              </Button>
+            )}
+            {contact.cv && (
+              <Button size="lg" variant="outline" asChild><a href={contact.cv} target="_blank" rel="noopener"><FileText /> Download CV</a></Button>
+            )}
             {contact.links.map((l, i) => (
-              <Button key={l.url} size="lg" variant={i === 0 ? 'default' : 'outline'} asChild>
+              <Button key={l.url} size="lg" variant={i === 0 && !contact.email && !contact.linkedin ? 'default' : 'outline'} asChild>
                 <a href={l.url} target={isExternal(l.url) ? '_blank' : undefined} rel="noopener">
                   {l.url.includes('github.com') && <GithubIcon />} {l.label}
                 </a>
