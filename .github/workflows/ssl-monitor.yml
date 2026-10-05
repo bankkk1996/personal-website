@@ -8,6 +8,10 @@ on:
     - cron: "*/30 * * * *"
   workflow_dispatch:
 
+permissions:
+  contents: read
+  actions: write # to re-enable this workflow (keep-alive below)
+
 concurrency:
   group: ssl-monitor
   cancel-in-progress: false
@@ -31,3 +35,11 @@ jobs:
           LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
           LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
         run: node checker/check.mjs
+
+      # GitHub disables scheduled workflows in public repos after 60 days without commits.
+      # Re-enabling the workflow resets that timer, so the checker keeps running unattended.
+      - name: Keep this scheduled workflow enabled
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/ssl-monitor.yml/enable"
