@@ -8,6 +8,6 @@
     { "pattern": "www.sorawich.in.th", "custom_domain": true }
   ],
   "assets": {
-    "directory": "./public"
+    "directory": "./dist"
   }
 }
