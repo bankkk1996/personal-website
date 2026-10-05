@@ -1,5 +1,6 @@
 import { ArrowRight, ArrowUpRight, Lock } from 'lucide-react';
 import { GithubIcon } from '@/components/github-icon';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -8,13 +9,15 @@ import { ThemeToggle } from '@/components/theme-toggle';
 import content from '@/content/site.json';
 
 // All copy lives in src/content/site.json, edited through the CMS at /admin (Sveltia CMS).
-const { hero, about, projects, contact } = content as SiteContent;
+const { hero, about, experience = [], projects, contact } = content as SiteContent;
 
 interface Link { label: string; url: string }
+interface Job { role: string; company: string; location?: string; start: string; end?: string; description?: string }
 interface Project { title: string; year: number; description: string; tags: string[]; links: Link[]; private?: boolean }
 interface SiteContent {
-  hero: { greeting: string; name: string; tagline: string; intro: string; github: string };
+  hero: { greeting: string; name: string; tagline: string; intro: string; github: string; photo?: string };
   about: { text: string; skills: string[] };
+  experience?: Job[];
   projects: Project[];
   contact: { text: string; links: Link[] };
 }
@@ -61,7 +64,7 @@ export default function App() {
         <div className="mx-auto flex h-16 max-w-5xl items-center gap-6 px-4 sm:px-6">
           <a href="#top" className="text-lg font-bold tracking-tight">sorawich<span className="text-brand">.</span></a>
           <nav className="ml-auto hidden gap-1 sm:flex">
-            {['About', 'Projects', 'Contact'].map((s) => (
+            {['About', ...(experience.length ? ['Experience'] : []), 'Projects', 'Contact'].map((s) => (
               <Button key={s} variant="ghost" size="sm" asChild><a href={`#${s.toLowerCase()}`}>{s}</a></Button>
             ))}
           </nav>
@@ -70,7 +73,8 @@ export default function App() {
       </header>
 
       <main id="top" className="mx-auto max-w-5xl px-4 sm:px-6">
-        <section className="py-20 sm:py-28">
+        <section className="flex flex-col-reverse items-start gap-10 py-20 sm:py-28 md:flex-row md:items-center md:justify-between">
+          <div>
           <p className="mb-3 font-medium text-brand">{hero.greeting}</p>
           <h1 className="text-5xl font-bold tracking-tight sm:text-7xl">{hero.name}</h1>
           <p className="mt-3 text-xl text-muted-foreground sm:text-2xl">{hero.tagline}</p>
@@ -79,6 +83,13 @@ export default function App() {
             <Button size="lg" asChild><a href="#projects">View my work <ArrowRight /></a></Button>
             <Button size="lg" variant="outline" asChild><a href={hero.github} target="_blank" rel="noopener"><GithubIcon /> GitHub</a></Button>
           </div>
+          </div>
+          {hero.photo && (
+            <Avatar className="size-32 shrink-0 ring-4 ring-brand/30 ring-offset-4 ring-offset-background sm:size-44 md:size-56">
+              <AvatarImage src={hero.photo} alt={hero.name} className="object-cover" />
+              <AvatarFallback className="text-4xl font-semibold">{hero.name.slice(0, 1)}</AvatarFallback>
+            </Avatar>
+          )}
         </section>
 
         <Separator />
@@ -92,6 +103,30 @@ export default function App() {
             </ul>
           </div>
         </section>
+
+        {experience.length > 0 && (
+          <>
+            <Separator />
+            <section id="experience" className="py-16 sm:py-20">
+              <SectionTitle>Experience</SectionTitle>
+              <ol className="relative ml-1.5 border-l pl-8">
+                {experience.map((j, i) => (
+                  <li key={`${j.company}-${j.start}-${i}`} className="relative pb-10 last:pb-0">
+                    <span className={`absolute top-1.5 -left-[2.4rem] size-3 rounded-full ring-4 ring-background ${!j.end ? 'bg-brand' : 'bg-muted-foreground/40'}`} />
+                    <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+                      <h3 className="text-lg font-semibold">{j.role} <span className="font-normal text-muted-foreground">· {j.company}</span></h3>
+                      <span className="text-sm whitespace-nowrap text-muted-foreground tabular-nums">
+                        {j.start} – {j.end || 'Present'}
+                      </span>
+                    </div>
+                    {j.location && <p className="text-sm text-muted-foreground">{j.location}</p>}
+                    {j.description && <p className="mt-3 leading-relaxed whitespace-pre-line text-muted-foreground">{j.description}</p>}
+                  </li>
+                ))}
+              </ol>
+            </section>
+          </>
+        )}
 
         <Separator />
 

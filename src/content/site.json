@@ -4,7 +4,8 @@
     "name": "Sorawich",
     "tagline": "Web Developer · Thailand",
     "intro": "I build web apps and the tools that keep websites healthy — from domain & SSL monitoring dashboards to React front-ends and WordPress themes.",
-    "github": "https://github.com/bankkk1996"
+    "github": "https://github.com/bankkk1996",
+    "photo": ""
   },
   "about": {
     "text": "I've been writing code on GitHub since 2016 — starting with university projects in Java, Python and deep learning, and moving on to full-stack JavaScript. Today I mostly work with React, Next.js and Node.js, and I enjoy building practical tools that solve real day-to-day problems.",
@@ -24,6 +25,7 @@
       "Cloudflare"
     ]
   },
+  "experience": [],
   "projects": [
     {
       "title": "Website Monitoring",

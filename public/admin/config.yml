@@ -15,6 +15,16 @@ locale: en
 
 media_folder: public/uploads
 public_folder: /uploads
+media_libraries:
+  default:
+    config:
+      max_file_size: 10000000 # 10 MB before conversion
+      transformations:
+        raster_image: # uploads are resized and converted to WebP
+          format: webp
+          quality: 85
+          width: 800
+          height: 800
 
 collections:
   - name: site
@@ -34,12 +44,27 @@ collections:
               - { name: tagline, label: Tagline, widget: string }
               - { name: intro, label: Intro, widget: text }
               - { name: github, label: GitHub URL, widget: string }
+              - { name: photo, label: "Profile photo (square works best)", widget: image, required: false }
           - name: about
             label: About
             widget: object
             fields:
               - { name: text, label: About text, widget: text }
               - { name: skills, label: Skills, widget: list, field: { name: skill, label: Skill, widget: string } }
+          - name: experience
+            label: Experience
+            label_singular: Job
+            widget: list
+            required: false
+            hint: Newest first. Leave "End" empty for your current job. The section is hidden while the list is empty.
+            summary: "{{fields.role}} · {{fields.company}} ({{fields.start}} – {{fields.end}})"
+            fields:
+              - { name: role, label: Role / position, widget: string }
+              - { name: company, label: Company, widget: string }
+              - { name: location, label: Location, widget: string, required: false }
+              - { name: start, label: "Start (e.g. 2023 or Jan 2023)", widget: string }
+              - { name: end, label: "End (empty = Present)", widget: string, required: false }
+              - { name: description, label: What you did, widget: text, required: false }
           - name: projects
             label: Projects
             label_singular: Project
