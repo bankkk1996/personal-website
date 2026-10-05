@@ -1,0 +1,8 @@
+# Never convert line endings in binary uploads (the CMS adds images and PDFs here)
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.ico binary
