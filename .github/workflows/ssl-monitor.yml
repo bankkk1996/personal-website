@@ -1,0 +1,33 @@
+name: SSL monitor check
+
+# Runs the certificate/uptime checker from github.com/bankkk1996/ssl-monitor against the app at
+# ssl.sorawich.in.th. It lives here because this repo holds the LINE secrets.
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: ssl-monitor
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          repository: bankkk1996/ssl-monitor
+          sparse-checkout: checker
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Check certificates and uptime
+        env:
+          SSL_MONITOR_API: https://ssl-monitor.banksine1735.workers.dev
+          SSL_MONITOR_TOKEN: ${{ secrets.SSL_MONITOR_TOKEN }}
+          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+          LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
+        run: node checker/check.mjs
