@@ -1,0 +1,82 @@
+{
+  "hero": {
+    "greeting": "สวัสดีครับ 👋 Hello, I'm",
+    "name": "Sorawich",
+    "tagline": "Web Developer · Thailand",
+    "intro": "I build web apps and the tools that keep websites healthy — from domain & SSL monitoring dashboards to React front-ends and WordPress themes.",
+    "github": "https://github.com/bankkk1996"
+  },
+  "about": {
+    "text": "I've been writing code on GitHub since 2016 — starting with university projects in Java, Python and deep learning, and moving on to full-stack JavaScript. Today I mostly work with React, Next.js and Node.js, and I enjoy building practical tools that solve real day-to-day problems.",
+    "skills": ["JavaScript", "TypeScript", "React", "Next.js", "Node.js / Express", "Tailwind CSS", "SQLite", "Docker", "WordPress", "Python", "Android (Java)", "Firebase", "Cloudflare"]
+  },
+  "projects": [
+    {
+      "title": "Website Monitoring",
+      "year": 2026,
+      "description": "Tools for keeping websites healthy: an SSL certificate, uptime & domain-expiry monitor on Cloudflare Workers + SQLite (D1) with checks on GitHub Actions and LINE alerts, an uptime status dashboard, and a self-hosted full-stack version.",
+      "tags": ["Cloudflare Workers", "D1 / SQLite", "GitHub Actions", "React", "shadcn/ui"],
+      "links": [
+        { "label": "SSL monitor code", "url": "https://github.com/bankkk1996/ssl-monitor" },
+        { "label": "Status dashboard", "url": "https://site-status-observer.vercel.app" },
+        { "label": "Full-stack code", "url": "https://github.com/bankkk1996/monitoring" }
+      ],
+      "private": false
+    },
+    {
+      "title": "QR Code Check-In",
+      "year": 2025,
+      "description": "Check people in by scanning a QR code or typing the code in, with a search page for admins. Runs entirely in the browser.",
+      "tags": ["HTML", "JavaScript", "GitHub Pages"],
+      "links": [
+        { "label": "Live demo", "url": "https://bankkk1996.github.io/QRCode-CheckIn/" },
+        { "label": "GitHub", "url": "https://github.com/bankkk1996/QRCode-CheckIn" }
+      ],
+      "private": false
+    },
+    {
+      "title": "Finance",
+      "year": 2026,
+      "description": "Personal income & expense tracker with monthly summaries and spending by category, running on Cloudflare’s edge behind Zero Trust login.",
+      "tags": ["Cloudflare Workers", "D1", "Zero Trust", "React", "shadcn/ui"],
+      "links": [],
+      "private": true
+    },
+    {
+      "title": "Coach App",
+      "year": 2025,
+      "description": "Mobile app for coaches, built with React Native and Expo Router, styled with NativeWind.",
+      "tags": ["React Native", "Expo", "TypeScript"],
+      "links": [{ "label": "GitHub", "url": "https://github.com/bankkk1996/Coach-app" }],
+      "private": false
+    },
+    {
+      "title": "WordPress Theme",
+      "year": 2025,
+      "description": "A complete custom WordPress theme — front page, archive, page and 404 templates, comments, header and footer.",
+      "tags": ["WordPress", "PHP", "CSS"],
+      "links": [{ "label": "GitHub", "url": "https://github.com/bankkk1996/theme-wordpress" }],
+      "private": false
+    },
+    {
+      "title": "TrashToGo",
+      "year": 2020,
+      "description": "Android app that helps people sort waste and find nearby recycling factories on a map, plus a web admin panel for managing factories, waste types and pickup requests.",
+      "tags": ["Android", "Java", "Firebase", "Google Maps"],
+      "links": [{ "label": "GitHub", "url": "https://github.com/bankkk1996/TrashToGo" }],
+      "private": false
+    },
+    {
+      "title": "Airfighters",
+      "year": 2021,
+      "description": "2D Android shooter game written from scratch in Java — steer the plane by tilting the phone (accelerometer & gyroscope) and shoot down the birds.",
+      "tags": ["Android", "Java", "Game"],
+      "links": [{ "label": "GitHub", "url": "https://github.com/bankkk1996/Airfighters" }],
+      "private": false
+    }
+  ],
+  "contact": {
+    "text": "Open to collaborations and new opportunities — feel free to reach out.",
+    "links": [{ "label": "GitHub", "url": "https://github.com/bankkk1996" }]
+  }
+}

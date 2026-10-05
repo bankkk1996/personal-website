@@ -25,7 +25,7 @@ jobs:
       - name: Typecheck and build
         run: npm run build
       - name: Extra checks
-        run: grep -q 'Sorawich</h1>' dist/index.html
+        run: grep -q '<h1' dist/index.html && test -f dist/admin/config.yml
       - name: Dry-run deploy
         run: npx --yes wrangler@4.147.0 deploy --dry-run
 

@@ -1,0 +1,73 @@
+# Sveltia CMS — https://sveltiacms.app
+# Sign in with "Sign In with Token" using a fine-grained GitHub token that has
+# Contents: Read and write on bankkk1996/personal-website. Saving commits to main,
+# and the CI/CD workflow rebuilds and deploys the site (about a minute).
+backend:
+  name: github
+  repo: bankkk1996/personal-website
+  branch: main
+  commit_messages:
+    update: "Update site content via CMS"
+
+site_url: https://sorawich.in.th
+display_url: https://sorawich.in.th
+locale: en
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: site
+    label: Website
+    files:
+      - name: content
+        label: Site content
+        file: src/content/site.json
+        format: json
+        fields:
+          - name: hero
+            label: Hero (top of page)
+            widget: object
+            fields:
+              - { name: greeting, label: Greeting, widget: string }
+              - { name: name, label: Name, widget: string }
+              - { name: tagline, label: Tagline, widget: string }
+              - { name: intro, label: Intro, widget: text }
+              - { name: github, label: GitHub URL, widget: string }
+          - name: about
+            label: About
+            widget: object
+            fields:
+              - { name: text, label: About text, widget: text }
+              - { name: skills, label: Skills, widget: list, field: { name: skill, label: Skill, widget: string } }
+          - name: projects
+            label: Projects
+            label_singular: Project
+            widget: list
+            summary: "{{fields.title}} ({{fields.year}})"
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: year, label: Year, widget: number, value_type: int }
+              - { name: description, label: Description, widget: text }
+              - { name: tags, label: Tags, widget: list, field: { name: tag, label: Tag, widget: string } }
+              - name: links
+                label: Links
+                widget: list
+                required: false
+                summary: "{{fields.label}}"
+                fields:
+                  - { name: label, label: Label, widget: string }
+                  - { name: url, label: URL, widget: string }
+              - { name: private, label: "Private project (no links shown)", widget: boolean, default: false, required: false }
+          - name: contact
+            label: Contact
+            widget: object
+            fields:
+              - { name: text, label: Text, widget: text }
+              - name: links
+                label: Buttons
+                widget: list
+                summary: "{{fields.label}}"
+                fields:
+                  - { name: label, label: Label, widget: string }
+                  - { name: url, label: "URL (https://… or mailto:…)", widget: string }
