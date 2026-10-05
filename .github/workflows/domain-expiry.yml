@@ -81,8 +81,16 @@ jobs:
           DAYS: ${{ steps.whois.outputs.days }}
         run: |
           TEXT="⚠️ โดเมน $DOMAIN จะหมดอายุวันที่ $EXPIRES (เหลือ $DAYS วัน)
-          👉 ต่ออายุที่นี่: https://thdomain.thnic.co.th/
-          เข้าสู่ระบบ → โดเมนของคุณ → $DOMAIN → ต่ออายุโดเมน"
+
+          วิธีต่ออายุ (~5 นาที)
+          1. เปิด https://thdomain.thnic.co.th/ แล้วเข้าสู่ระบบ
+          2. เมนูซ้าย: โดเมนของคุณ → $DOMAIN
+          3. กด \"ต่ออายุโดเมน\" (ปุ่มสีเขียว)
+          4. ระยะเวลา: 10 ปี คุ้มสุด หรือ 1 ปี
+          5. ติ๊ก \"ใช่, ต้องการต่ออายุโดเมน\" → ดำเนินการ
+          6. ชำระเงิน (บัตร / Thai QR) — โอนธนาคารต้องแนบสลิปที่ \"คำขอในระบบ\"
+
+          THNIC ต่อให้ภายใน 1 วันทำการ แล้วการเตือนจะหยุดเอง"
           jq -n --arg to "$LINE_TO" --arg text "$TEXT" '{to: $to, messages: [{type: "text", text: $text}]}' \
             | curl -sS --fail-with-body -X POST https://api.line.me/v2/bot/message/push \
                 -H "Authorization: Bearer $LINE_TOKEN" -H "Content-Type: application/json" -d @-
