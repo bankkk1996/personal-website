@@ -1,4 +1,9 @@
 {
+  "availability": {
+    "open": true,
+    "label": "Open to new opportunities",
+    "types": []
+  },
   "hero": {
     "greeting": "สวัสดีครับ 👋 Hello, I'm",
     "name": "Sorawich",

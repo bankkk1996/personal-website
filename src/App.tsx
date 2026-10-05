@@ -9,12 +9,13 @@ import { ThemeToggle } from '@/components/theme-toggle';
 import content from '@/content/site.json';
 
 // All copy lives in src/content/site.json, edited through the CMS at /admin (Sveltia CMS).
-const { hero, about, experience = [], projects, contact } = content as SiteContent;
+const { availability, hero, about, experience = [], projects, contact } = content as SiteContent;
 
 interface Link { label: string; url: string }
 interface Job { role: string; company: string; location?: string; start: string; end?: string; description?: string }
 interface Project { title: string; year: number; description: string; tags: string[]; links: Link[]; private?: boolean }
 interface SiteContent {
+  availability?: { open: boolean; label: string; types?: string[] };
   hero: { greeting: string; name: string; tagline: string; intro: string; github: string; photo?: string };
   about: { text: string; skills: string[] };
   experience?: Job[];
@@ -75,6 +76,15 @@ export default function App() {
       <main id="top" className="mx-auto max-w-5xl px-4 sm:px-6">
         <section className="flex flex-col-reverse items-start gap-10 py-20 sm:py-28 md:flex-row md:items-center md:justify-between">
           <div>
+          {availability?.open && (
+            <a href="#contact" className="mb-6 inline-flex items-center gap-2 rounded-full border border-good/30 bg-good-soft px-3 py-1 text-sm font-medium text-good transition-colors hover:border-good/60">
+              <span className="relative flex size-2">
+                <span className="absolute inline-flex size-full animate-ping rounded-full bg-good opacity-60 motion-reduce:hidden" />
+                <span className="relative inline-flex size-2 rounded-full bg-good" />
+              </span>
+              {availability.label}
+            </a>
+          )}
           <p className="mb-3 font-medium text-brand">{hero.greeting}</p>
           <h1 className="text-5xl font-bold tracking-tight sm:text-7xl">{hero.name}</h1>
           <p className="mt-3 text-xl text-muted-foreground sm:text-2xl">{hero.tagline}</p>
@@ -142,6 +152,14 @@ export default function App() {
         <section id="contact" className="py-16 sm:py-20">
           <SectionTitle>Contact</SectionTitle>
           <p className="max-w-xl text-lg text-muted-foreground">{contact.text}</p>
+          {availability?.open && !!availability.types?.length && (
+            <div className="mt-5 flex flex-wrap items-center gap-2">
+              <span className="text-sm text-muted-foreground">Interested in:</span>
+              {availability.types.map((t) => (
+                <Badge key={t} variant="outline" className="border-good/30 bg-good-soft px-3 py-1 text-sm font-medium text-good">{t}</Badge>
+              ))}
+            </div>
+          )}
           <div className="mt-6 flex flex-wrap gap-3">
             {contact.links.map((l, i) => (
               <Button key={l.url} size="lg" variant={i === 0 ? 'default' : 'outline'} asChild>

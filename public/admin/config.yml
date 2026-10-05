@@ -35,6 +35,18 @@ collections:
         file: src/content/site.json
         format: json
         fields:
+          - name: availability
+            label: Open to new opportunities
+            widget: object
+            collapsed: false
+            fields:
+              - { name: open, label: "Show the \"open to opportunities\" badge", widget: boolean, default: true }
+              - { name: label, label: Badge text, widget: string, default: Open to new opportunities }
+              - name: types
+                label: "Interested in (shown under Contact, e.g. Full-time, Freelance, Remote)"
+                widget: list
+                required: false
+                field: { name: type, label: Type, widget: string }
           - name: hero
             label: Hero (top of page)
             widget: object
